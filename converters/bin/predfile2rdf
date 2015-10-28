@@ -3,8 +3,7 @@
 import argparse
 
 from predicates_file.parser import PredicatesFileParser
-from predicates_file.predicatesfile2rdfconverter import \
-    PredicatesFile2RDFConverter
+from predicates_file.rdfconverter import PredicatesFile2RDFConverter
 
 
 if __name__ == '__main__':
