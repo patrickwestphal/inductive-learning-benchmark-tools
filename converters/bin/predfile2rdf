@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+import argparse
+
+from predicates_file.parser import PredicatesFileParser
+from predicates_file.predicatesfile2rdfconverter import \
+    PredicatesFile2RDFConverter
+
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('predicates_files_dir')
+    arg_parser.add_argument('outfile')
+
+    args = arg_parser.parse_args()
+
+    parser = PredicatesFileParser()
+    converter = PredicatesFile2RDFConverter()
+    parser.register_converter(converter)
+    parser.parse(args.predicates_files_dir)
+    converter.write_results_to_file(args.outfile)
