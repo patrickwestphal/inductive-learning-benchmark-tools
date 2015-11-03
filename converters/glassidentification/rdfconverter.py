@@ -1,24 +1,21 @@
 from rdflib import Graph
 from rdflib import Literal
 from rdflib import OWL
-owl_Class = OWL.term('Class')
-owl_DatatypeProperty = OWL.term('DatatypeProperty')
-owl_FunctionalProperty = OWL.term('FunctionalProperty')
-
 from rdflib import RDF
-a = RDF.term('type')
-
 from rdflib import RDFS
+from rdflib import URIRef
+from rdflib import XSD
+
+from utils import write_graph
+
+a = RDF.term('type')
 rdfs_subClassOf = RDFS.term('subClassOf')
 rdfs_domain = RDFS.term('domain')
 rdfs_range = RDFS.term('range')
-
-from rdflib import URIRef
-
-from rdflib import XSD
 xsd_double = XSD.term('double')
-
-from utils import write_graph
+owl_Class = OWL.term('Class')
+owl_DatatypeProperty = OWL.term('DatatypeProperty')
+owl_FunctionalProperty = OWL.term('FunctionalProperty')
 
 
 class GlassIdentification2RDFConverter(object):

@@ -2,14 +2,14 @@ from rdflib import BNode
 from rdflib import Graph
 from rdflib import OWL
 from rdflib import RDF
-a = RDF.term('type')
 from rdflib import RDFS
 from rdflib import URIRef
 
 from predicates_file.converters import PredicateFileConverter
 from predicates_file import ProgrammingError
-
 from utils import write_graph
+
+a = RDF.term('type')
 
 
 class PredicatesFile2RDFConverter(PredicateFileConverter):
@@ -99,9 +99,9 @@ class PredicatesFile2RDFConverter(PredicateFileConverter):
         :param arguments: a list containing the predicate arguments
         """
         if len(arguments) == 1:
-            # In this case the whole predicate assignment is considered as class
-            # assignment, i.e. the predicate is the class and the argument the
-            # instance
+            # In this case the whole predicate assignment is considered as
+            # class assignment, i.e. the predicate is the class and the
+            # argument the instance
             sub_cls = predicate
             self._classes.add(sub_cls)
 

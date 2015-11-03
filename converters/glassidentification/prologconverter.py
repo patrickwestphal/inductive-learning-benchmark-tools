@@ -5,7 +5,8 @@ class GlassIdentification2PrologConverter(object):
     """
     1. Id number: 1 to 214
     2. RI: refractive index
-    3. Na: Sodium (unit measurement: weight percent in corresponding oxide, as are attributes 4-10)
+    3. Na: Sodium (unit measurement: weight percent in corresponding oxide, as
+       are attributes 4-10)
     4. Mg: Magnesium
     5. Al: Aluminum
     6. Si: Silicon
@@ -96,7 +97,7 @@ class GlassIdentification2PrologConverter(object):
 
                 # 10. Type of glass
                 self._rules.append('%s(%s).' % (self._type2type_str[parts[10]],
-                                               const))
+                                                const))
 
         with open(output_file_path, 'w') as o:
             for rule in self._rules:

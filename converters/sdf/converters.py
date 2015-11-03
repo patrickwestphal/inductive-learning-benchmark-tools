@@ -39,7 +39,8 @@ class SDFConverter(object):
         since the actual values in the atom block can be overridden in a part
         that is read later (properties block)
 
-        :param parsing_results: the parsed atom block which looks sth like this:
+        :param parsing_results: the parsed atom block which looks sth like
+            this:
             (Pdb) parse_results
             (['5.3203', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
             '0', '0', '0', '0', '0', '0', '3.9874', '-2.3043', '0.0000', 'C',

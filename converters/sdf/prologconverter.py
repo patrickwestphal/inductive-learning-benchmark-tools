@@ -130,10 +130,10 @@ class SDF2PrologConverter(SDFConverter):
         self._add_r('single_bond_either_up_or_down_stereochemistry', 'X',
                     ':-', 'single_bond_down_stereochemistry', 'X')
 
-        self._add_r('either_ring_or_chain_topology', 'X', ':-',
-                    'ring_topology', 'X')
-        self._add_r('either_ring_or_chain_topology', 'X', ':-',
-                    'chain_topology', 'X')
+        self._add_r(
+            'either_ring_or_chain_topology', 'X', ':-', 'ring_topology', 'X')
+        self._add_r(
+            'either_ring_or_chain_topology', 'X', ':-', 'chain_topology', 'X')
 
         self._add_r('bond_made_or_broken_and_bond_order_changes', 'X', ':-',
                     'bond_made_or_broken', 'X', ',', 'bond_order_changes', 'X')
@@ -143,7 +143,8 @@ class SDF2PrologConverter(SDFConverter):
                     'X', ':-', 'bond_made_or_broken', 'X', ',',
                     'bond_order_changes', 'X', ',', 'a_center', 'X')
 
-        self._add_r('has_binding_with', 'X', 'Y', ':-', 'has_binding', 'Y', 'X')
+        self._add_r(
+            'has_binding_with', 'X', 'Y', ':-', 'has_binding', 'Y', 'X')
 
     def _get_next_molecule_constant(self):
         self._molec_const_cntr += 1
@@ -237,46 +238,46 @@ class SDF2PrologConverter(SDFConverter):
         """
         :param parsing_results: sth like this:
         (Pdb) parsing_results
-        (['5.3203', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '3.9874', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '3.3209', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '1.9880', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '1.3329', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '1.9880', '-1.1522', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '3.3209', '-1.1522', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '3.9874', '0.0000', '0.0000', 'O', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '0.0000', '-2.3043', '0.0000', 'O', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '3.9874', '-4.6086', '0.0000', 'O', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '5.3203', '-4.6086', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '5.9754', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '7.3083', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '7.9748', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '9.3077', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '9.9628', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '9.3077', '-4.6086', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
-          '7.9748', '-4.6086', '0.0000', 'C', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0',
+        (['5.3203', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '3.9874', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '3.3209', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '1.9880', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '1.3329', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '1.9880', '-1.1522', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '3.3209', '-1.1522', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '3.9874', '0.0000', '0.0000', 'O', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '0.0000', '-2.3043', '0.0000', 'O', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '3.9874', '-4.6086', '0.0000', 'O', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '5.3203', '-4.6086', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '5.9754', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '7.3083', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '7.9748', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '9.3077', '-2.3043', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '9.9628', '-3.4565', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '9.3077', '-4.6086', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
+          '7.9748', '-4.6086', '0.0000', 'C', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0',
           '11.2957', '-3.4565', '0.0000', 'O', '0', '0', '0', '0', '0', '0',
           '0', '0', '0', '0', '0', '0',
-          '5.9754', '-1.1522', '0.0000', 'O', '0', '0', '0', '0', '0', '0', '0',
-          '0', '0', '0', '0', '0'], {})
+          '5.9754', '-1.1522', '0.0000', 'O', '0', '0', '0', '0', '0', '0',
+          '0', '0', '0', '0', '0', '0'], {})
         """
         self._curr_atm_blck = []
         curr_row = 0
@@ -334,7 +335,7 @@ class SDF2PrologConverter(SDFConverter):
             tmp = pr_copy.pop(0)
             val = hydrogen_count_mapping[tmp]
             if val is not None:
-                self._curr_atm_blck[curr_row][self._hydrogen_count_plus_1_str] \
+                self._curr_atm_blck[curr_row][self._hydrogen_count_plus_1_str]\
                     = val
 
             # stereo care box
@@ -354,7 +355,8 @@ class SDF2PrologConverter(SDFConverter):
             # H0 designator
             tmp = pr_copy.pop(0)
             if tmp == 1:
-                self._curr_atm_blck[curr_row][self._h0_designator_str] = 'false'
+                self._curr_atm_blck[curr_row][self._h0_designator_str] = \
+                    'false'
 
             # not used (twice)
             pr_copy.pop(0)
@@ -464,7 +466,8 @@ class SDF2PrologConverter(SDFConverter):
             num_entries = int(pr_copy.pop(0))
 
             # TODO: add further property types
-            # (the SDF file I wanted to convert only contained the CHG property)
+            # (the SDF file I wanted to convert only contained the CHG
+            # property)
             if prop_type == 'M  CHG':
                 for i in range(num_entries):
                     atom_nr = int(pr_copy.pop(0)) - 1
@@ -475,57 +478,57 @@ class SDF2PrologConverter(SDFConverter):
         atom_cntr = 1
 
         for entry in self._curr_atm_blck:
-            atom_const = 'atom_%i_%s' % (self._molec_const_cntr, atom_cntr)
+            atom_cnst = 'atom_%i_%s' % (self._molec_const_cntr, atom_cntr)
 
-            self._add_f('is_atom', atom_const)
+            self._add_f('is_atom', atom_cnst)
 
             # atom number
-            self._add_f('atom_number', self._curr_molec_const, atom_const,
+            self._add_f('atom_number', self._curr_molec_const, atom_cnst,
                         str(atom_cntr))
 
             # atom coords X
             self._add_f(
-                'atom_coordinate_x', atom_const, entry[self._atom_coords_x_str])
+                'atom_coordinate_x', atom_cnst, entry[self._atom_coords_x_str])
 
             # atom coords Y
             self._add_f(
-                'atom_coordinate_y', atom_const, entry[self._atom_coords_y_str])
+                'atom_coordinate_y', atom_cnst, entry[self._atom_coords_y_str])
 
             # atom coords Z
             self._add_f(
-                'atom_coordinate_z', atom_const, entry[self._atom_coords_z_str])
+                'atom_coordinate_z', atom_cnst, entry[self._atom_coords_z_str])
 
             # atom symbol
-            self._add_f('atom_symbol', atom_const, entry[self._atom_symbol_str])
+            self._add_f('atom_symbol', atom_cnst, entry[self._atom_symbol_str])
 
             # mass difference
-            self._add_f('mass_difference', atom_const,
+            self._add_f('mass_difference', atom_cnst,
                         entry[self._mass_diff_str])
 
             # charge
-            self._add_f('charge', atom_const, str(entry[self._charge_str]))
+            self._add_f('charge', atom_cnst, str(entry[self._charge_str]))
 
             # atom stereo parity
             if entry.get(self._atom_stereo_parity_str) is not None:
-                self._add_f('atom_stereo_parity', atom_const,
+                self._add_f('atom_stereo_parity', atom_cnst,
                             entry[self._atom_stereo_parity_str])
 
             # hydrogen count
             if entry.get(self._hydrogen_count_plus_1_str) is not None:
-                self._add_f('hydrogen_count', atom_const,
+                self._add_f('hydrogen_count', atom_cnst,
                             entry[self._hydrogen_count_plus_1_str].lower())
 
             # valence
             if entry.get(self._valence_str) is not None:
-                self._add_f('valence', atom_const, entry[self._valence_str])
+                self._add_f('valence', atom_cnst, entry[self._valence_str])
 
             # H0 designator
             if entry.get(self._h0_designator_str) is not None:
-                self._add_f('h_atoms_allowed', atom_const,
+                self._add_f('h_atoms_allowed', atom_cnst,
                             entry[self._h0_designator_str])
 
             # atom-atom mapping number
-            self._add_f('atom_atom_mapping_number', atom_const,
+            self._add_f('atom_atom_mapping_number', atom_cnst,
                         str(entry[self._atom_atom_mapping_number_str]))
 
             atom_cntr += 1

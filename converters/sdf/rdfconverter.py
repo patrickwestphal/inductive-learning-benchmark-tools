@@ -60,7 +60,8 @@ class SDF2RDFConverter(SDFConverter):
         'Down': 'SingleBondDownStereochemistry',
         'Use x-, y-, z-coords from atom block to determine cis or trans':
             'DoubleBondDeriveCisOrTransIsomerismFromXYZCoords',
-        'Either cis or trans double bond': 'DoubleBondEitherCisOrTransIsomerism'
+        'Either cis or trans double bond':
+            'DoubleBondEitherCisOrTransIsomerism'
     }
 
     _bond_topology_to_cls_local_part = {
@@ -91,8 +92,8 @@ class SDF2RDFConverter(SDFConverter):
         self._res_cntr = 1
         self._bond_ctr = 1
 
-        # will contain properties (URIRef) as keys and the most general datatype
-        # as value
+        # will contain properties (URIRef) as keys and the most general
+        # datatype as value
         self._props = {}
         # will contain properties (URIRef) as keys and a list of (sub, val)
         # pairs as value; needs to be done this way since the correct datatype
@@ -106,7 +107,7 @@ class SDF2RDFConverter(SDFConverter):
         self._init_ontology()
 
     def _init_ontology(self):
-        # ---------------------- basic vocabulary elements ---------------------
+        # ---------------------- basic vocabulary elements --------------------
         self.xsd_nnint = XSD.term('nonNegativeInteger')
         self.xsd_int = XSD.term('integer')
         self.xsd_bool = XSD.term('boolean')
@@ -122,7 +123,7 @@ class SDF2RDFConverter(SDFConverter):
         owl_dtype_prop = OWL.term('DatatypeProperty')
         owl_obj_prop = OWL.term('ObjectProperty')
 
-        # --------------------------- basic classes ----------------------------
+        # --------------------------- basic classes ---------------------------
         # dllont:Molecule
         self.cls_molecule = URIRef(self._ont_uri_prefix + 'Molecule')
         self._g.add((self.cls_molecule, a, owl_class))
@@ -135,7 +136,7 @@ class SDF2RDFConverter(SDFConverter):
         self.cls_atom_symbol = URIRef(self._ont_uri_prefix + 'AtomSymbol')
         self._g.add((self.cls_atom_symbol, a, owl_class))
 
-        # ----------------- atom stereo parity class hierarchy -----------------
+        # ----------------- atom stereo parity class hierarchy ----------------
         # dllont:AtomParity
         cls_atom_parity = URIRef(self._ont_uri_prefix + 'AtomParity')
         self._g.add((cls_atom_parity, a, owl_class))
@@ -148,9 +149,10 @@ class SDF2RDFConverter(SDFConverter):
             self._g.add((cls, a, owl_class))
             self._g.add((cls, rdfs_subcls_of, cls_atom_parity))
 
-        # ----------------- hydrogen count resources and class -----------------
+        # ----------------- hydrogen count resources and class ----------------
         # dllont:HydrogenCount
-        self.cls_hydrogen_count = URIRef(self._ont_uri_prefix + 'HydrogenCount')
+        self.cls_hydrogen_count = \
+            URIRef(self._ont_uri_prefix + 'HydrogenCount')
         self._g.add((self.cls_hydrogen_count, a, owl_class))
 
         for val in hydrogen_count_mapping.values():
@@ -158,7 +160,7 @@ class SDF2RDFConverter(SDFConverter):
                 hc_res = URIRef(self._resource_uri_prefix + val.lower())
                 self._g.add((hc_res, a, self.cls_hydrogen_count))
 
-        # ------------------------ bond class hierarchy ------------------------
+        # ------------------------ bond class hierarchy -----------------------
         # dllont:Bond
         self.cls_bond = URIRef(self._ont_uri_prefix + 'Bond')
         self._g.add((self.cls_bond, a, owl_class))
@@ -175,7 +177,7 @@ class SDF2RDFConverter(SDFConverter):
 
                 self._g.add((bond_cls, rdfs_subcls_of, super_cls))
 
-        # ------------------- bond isomerism class hierarchy -------------------
+        # ------------------- bond isomerism class hierarchy ------------------
         # dllont:NonStereoBond
         non_st_bond_cls = self._get_cls_uri(
             self._bond_stereo_to_cls_local_part, 'Not stereo')
@@ -220,7 +222,7 @@ class SDF2RDFConverter(SDFConverter):
         self._g.add((cis_or_trans_cls, a, owl_class))
         self._g.add((cis_or_trans_cls, rdfs_subcls_of, cls_double_bond))
 
-        # -------------------------- topology classes --------------------------
+        # -------------------------- topology classes -------------------------
         # dllont:BondTopology
         topology_cls = URIRef(self._ont_uri_prefix + 'BondTopology')
         self._g.add((topology_cls, a, owl_class))
@@ -243,7 +245,7 @@ class SDF2RDFConverter(SDFConverter):
         self._g.add((chain_topo_cls, a, owl_class))
         self._g.add((chain_topo_cls, rdfs_subcls_of, either_topo_cls))
 
-        # --------------- reacting center status class hierarchy ---------------
+        # --------------- reacting center status class hierarchy --------------
         # dllont:ReactingCenterStatus
         react_center_status_cls = URIRef(
             self._ont_uri_prefix + 'ReactingCenterStatus')
@@ -357,7 +359,7 @@ class SDF2RDFConverter(SDFConverter):
             react_a_center_cls
         ))
 
-        # ------------------------ property definitions ------------------------
+        # ------------------------ property definitions -----------------------
         # dllont:number_of_atoms
         self.prop_num_atoms = \
             URIRef(self._ont_uri_prefix + 'number_of_atoms')
@@ -366,7 +368,8 @@ class SDF2RDFConverter(SDFConverter):
         self._g.add((self.prop_num_atoms, rdfs_rnge, self.xsd_nnint))
 
         # dllont:number_of_bounds
-        self.prop_num_bounds = URIRef(self._ont_uri_prefix + 'number_of_bounds')
+        self.prop_num_bounds = \
+            URIRef(self._ont_uri_prefix + 'number_of_bounds')
         self._g.add((self.prop_num_bounds, a, owl_dtype_prop))
         self._g.add((self.prop_num_bounds, rdfs_dom, self.cls_molecule))
         self._g.add((self.prop_num_bounds, rdfs_rnge, self.xsd_nnint))
@@ -460,7 +463,8 @@ class SDF2RDFConverter(SDFConverter):
             self._ont_uri_prefix + 'atom-atom_mapping_number')
         self._g.add((self.prop_atom_atom_mapping_nr, a, owl_dtype_prop))
         self._g.add((self.prop_atom_atom_mapping_nr, rdfs_dom, self.cls_atom))
-        self._g.add((self.prop_atom_atom_mapping_nr, rdfs_rnge, self.xsd_nnint))
+        self._g.add(
+            (self.prop_atom_atom_mapping_nr, rdfs_rnge, self.xsd_nnint))
 
         # dllont:has_binding_with
         self.prop_has_binding_with = URIRef(
@@ -518,7 +522,8 @@ class SDF2RDFConverter(SDFConverter):
         """
         # since this is called firs, a new RDF resource is created which will
         # have all the information attached
-        self._curr_res = URIRef(self._resource_uri_prefix + str(self._res_cntr))
+        self._curr_res = URIRef(self._resource_uri_prefix +
+                                str(self._res_cntr))
         self._res_cntr += 1
 
         self._g.add((self._curr_res, RDF.term('type'), self.cls_molecule))
@@ -613,7 +618,7 @@ class SDF2RDFConverter(SDFConverter):
             tmp = pr_copy.pop(0)
             val = hydrogen_count_mapping[tmp]
             if val is not None:
-                self._curr_atm_blck[curr_row][self._hydrogen_count_plus_1_str] \
+                self._curr_atm_blck[curr_row][self._hydrogen_count_plus_1_str]\
                     = val
 
             # stereo care box
@@ -633,7 +638,8 @@ class SDF2RDFConverter(SDFConverter):
             # H0 designator
             tmp = pr_copy.pop(0)
             if tmp == 1:
-                self._curr_atm_blck[curr_row][self._h0_designator_str] = 'false'
+                self._curr_atm_blck[curr_row][self._h0_designator_str] = \
+                    'false'
 
             # not used (twice)
             pr_copy.pop(0)
@@ -672,7 +678,8 @@ class SDF2RDFConverter(SDFConverter):
             # second atom number
             second_atom_nr = pr_copy.pop(0)
             second_atom = URIRef(self._resource_uri_prefix +
-                                 str(self._res_cntr) + '/atom' + second_atom_nr)
+                                 str(self._res_cntr) + '/atom' +
+                                 second_atom_nr)
 
             self._g.add((first_atom, self.prop_has_binding_with, second_atom))
             self._g.add((bond_res, self.prop_first_bound_atom, first_atom))
@@ -728,7 +735,8 @@ class SDF2RDFConverter(SDFConverter):
             num_entries = int(pr_copy.pop(0))
 
             # TODO: add further property types
-            # (the SDF file I wanted to convert only contained the CHG property)
+            # (the SDF file I wanted to convert only contained the CHG
+            # property)
             if prop_type == 'M  CHG':
                 for i in range(num_entries):
                     atom_nr = int(pr_copy.pop(0)) - 1
@@ -835,7 +843,8 @@ class SDF2RDFConverter(SDFConverter):
                 self._g.add((
                     atom_res,
                     self.prop_h_atoms_allowed,
-                    Literal(entry[self._h0_designator_str], None, self.xsd_bool)
+                    Literal(entry[self._h0_designator_str], None,
+                            self.xsd_bool)
                 ))
 
             # atom-atom mapping number
