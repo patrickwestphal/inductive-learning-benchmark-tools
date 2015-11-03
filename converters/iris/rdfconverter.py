@@ -17,6 +17,8 @@ from rdflib import URIRef
 from rdflib import XSD
 xsd_double = XSD.term('double')
 
+from utils import write_graph
+
 
 class Iris2RDFConverter(object):
     """
@@ -33,14 +35,6 @@ class Iris2RDFConverter(object):
 
     [https://archive.ics.uci.edu/ml/datasets/Iris]
     """
-
-    _file_suffix_to_serialization = {
-        'ttl': 'turtle',
-        'xml': 'xml',
-        'rdf': 'xml',
-        'n3': 'n3',
-        'nt': 'nt'
-    }
 
     def __init__(self):
         self._g = Graph()
@@ -110,11 +104,4 @@ class Iris2RDFConverter(object):
                 # 5. class
                 self._g.add((res, a, self._clsid2cls[parts[4]]))
 
-        file_suffix = output_file_path.rsplit('.', 1)[-1]
-
-        serialization = self._file_suffix_to_serialization.get(file_suffix)
-
-        if serialization is None:
-            self._g.serialize(output_file_path)
-        else:
-            self._g.serialize(output_file_path, serialization)
+        write_graph(self._g, output_file_path)

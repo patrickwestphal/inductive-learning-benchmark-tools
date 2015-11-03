@@ -9,6 +9,7 @@ from .parser import charge_mapping, hydrogen_count_mapping, \
     bond_topology_mapping, reacting_center_status_mapping
 
 from sdf.converters import SDFConverter
+from utils import write_graph
 
 
 class SDF2RDFConverter(SDFConverter):
@@ -18,14 +19,6 @@ class SDF2RDFConverter(SDFConverter):
         XSD.term('double'): [],
         XSD.term('nonNegativeInteger'): [XSD.term('integer'),
                                          XSD.term('double')]
-    }
-
-    _file_suffix_to_serialization = {
-        'ttl': 'turtle',
-        'xml': 'xml',
-        'rdf': 'xml',
-        'n3': 'n3',
-        'nt': 'nt'
     }
 
     def _get_cls_uri(self, type2local_part_dict, type_):
@@ -921,11 +914,4 @@ class SDF2RDFConverter(SDFConverter):
                 self._g.add((subj, prop, Literal(val, None, dtype)))
 
     def write_results_to_file(self, out_file_path):
-        file_suffix = out_file_path.rsplit('.', 1)[-1]
-
-        serialization = self._file_suffix_to_serialization.get(file_suffix)
-
-        if serialization is None:
-            self._g.serialize(out_file_path)
-        else:
-            self._g.serialize(out_file_path, serialization)
+        write_graph(self._g, out_file_path)

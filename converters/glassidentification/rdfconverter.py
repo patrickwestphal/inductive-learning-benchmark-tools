@@ -18,12 +18,15 @@ from rdflib import URIRef
 from rdflib import XSD
 xsd_double = XSD.term('double')
 
+from utils import write_graph
+
 
 class GlassIdentification2RDFConverter(object):
     """
     1. Id number: 1 to 214
     2. RI: refractive index
-    3. Na: Sodium (unit measurement: weight percent in corresponding oxide, as are attributes 4-10)
+    3. Na: Sodium (unit measurement: weight percent in corresponding oxide, as
+       are attributes 4-10)
     4. Mg: Magnesium
     5. Al: Aluminum
     6. Si: Silicon
@@ -42,14 +45,6 @@ class GlassIdentification2RDFConverter(object):
 
     [https://archive.ics.uci.edu/ml/datasets/Glass+Identification]
     """
-
-    _file_suffix_to_serialization = {
-        'ttl': 'turtle',
-        'xml': 'xml',
-        'rdf': 'xml',
-        'n3': 'n3',
-        'nt': 'nt'
-    }
 
     def __init__(self):
         self._g = Graph()
@@ -114,7 +109,6 @@ class GlassIdentification2RDFConverter(object):
             self._g.add((p, rdfs_range, xsd_double))
             self._g.add((p, a, owl_FunctionalProperty))
 
-
     def convert(self, input_file_path, output_file_path):
         self.add_ont_axioms()
 
@@ -170,10 +164,4 @@ class GlassIdentification2RDFConverter(object):
                 cls = self._type2_cls[parts[10]]
                 self._g.add((res, a, cls))
 
-        file_suffix = output_file_path.rsplit('.', 1)[-1]
-        serialization = self._file_suffix_to_serialization.get(file_suffix)
-
-        if serialization is None:
-            self._g.serialize(output_file_path)
-        else:
-            self._g.serialize(output_file_path, serialization)
+        write_graph(self._g, output_file_path)

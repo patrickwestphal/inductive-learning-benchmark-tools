@@ -9,19 +9,13 @@ from rdflib import URIRef
 from predicates_file.converters import PredicateFileConverter
 from predicates_file import ProgrammingError
 
+from utils import write_graph
+
 
 class PredicatesFile2RDFConverter(PredicateFileConverter):
     _pred_uri_prefix = 'http://dl-learner.org/ont/p/'
     _cls_uri_prefix = 'http://dl-learner.org/ont/c/'
     _res_uri_prefix = 'http://dl-learner.org/res/'
-
-    _file_suffix_to_serialization = {
-        'ttl': 'turtle',
-        'xml': 'xml',
-        'rdf': 'xml',
-        'n3': 'n3',
-        'nt': 'nt'
-    }
 
     def __init__(self):
         self._id2cls = {}
@@ -236,11 +230,4 @@ class PredicatesFile2RDFConverter(PredicateFileConverter):
                 self._g.add((self._pred_uri(pred), a, owl_FunctionalProperty))
 
     def write_results_to_file(self, out_file_path):
-        file_suffix = out_file_path.rsplit('.', 1)[-1]
-
-        serialization = self._file_suffix_to_serialization.get(file_suffix)
-
-        if serialization is None:
-            self._g.serialize(out_file_path)
-        else:
-            self._g.serialize(out_file_path, serialization)
+        write_graph(self._g, out_file_path)
