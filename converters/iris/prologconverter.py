@@ -49,19 +49,19 @@ class Iris2PrologConverter(object):
 
                 c = self._get_next_c()
 
-                # 1. sepal length in cm
+                # 0. sepal length in cm
                 self._rules.append('%s(%s, %s).' % (self._p0, c, parts[0]))
 
-                # 2. sepal width in cm
+                # 1. sepal width in cm
                 self._rules.append('%s(%s, %s).' % (self._p1, c, parts[1]))
 
-                # 3. petal length in cm
+                # 2. petal length in cm
                 self._rules.append('%s(%s, %s).' % (self._p2, c, parts[2]))
 
-                # 4. petal width in cm
+                # 3. petal width in cm
                 self._rules.append('%s(%s, %s).' % (self._p3, c, parts[3]))
 
-                # 5. class
+                # 4. class
                 self._rules.append('%s(%s).' % (self._pid2p[parts[4]], c))
 
         with open(output_file_path, 'w') as o:
