@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import argparse
+
+from wine.rdfconverter import Wine2RDFConverter
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('wine_data_file')
+    arg_parser.add_argument('outfile')
+
+    args = arg_parser.parse_args()
+
+    converter = Wine2RDFConverter()
+    converter.convert(args.wine_data_file, args.outfile)
