@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import argparse
+
+from glassidentification.prologconverter import \
+    GlassIdentification2PrologConverter
+
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('glass_identification_file')
+    arg_parser.add_argument('outfile')
+
+    args = arg_parser.parse_args()
+
+    converter = GlassIdentification2PrologConverter()
+    converter.convert(args.glass_identification_file, args.outfile)
