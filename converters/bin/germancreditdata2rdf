@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import argparse
+
+from germancreditdata.rdfconverter import GermanCreditData2RDFConverter
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('credit_data_file')
+    arg_parser.add_argument('outfile')
+
+    args = arg_parser.parse_args()
+
+    converter = GermanCreditData2RDFConverter()
+    converter.convert(args.credit_data_file, args.outfile)
