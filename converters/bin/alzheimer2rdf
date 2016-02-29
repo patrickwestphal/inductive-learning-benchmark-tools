@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+import argparse
+import os
+
+from datasets.alzheimer.rdfconverter import AlzheimerAmineUptake2RDFConverter
+
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('alz_dir')
+    arg_parser.add_argument('dataset', help='one of \'amine_uptake\', '
+                                            '\'choline\', \'scopolamine\', '
+                                            '\'toxic\'')
+    arg_parser.add_argument('outfile')
+
+    args = arg_parser.parse_args()
+
+    ds = args.dataset
+    if ds == 'amine_uptake':
+        converter = AlzheimerAmineUptake2RDFConverter()
+
+    converter.convert(os.path.join(args.alz_dir, ds), args.outfile)
