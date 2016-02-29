@@ -59,4 +59,4 @@ target/
 # tmp files
 *.swp
 catalog-v001.xml
-deleteme*
+*deleteme*
