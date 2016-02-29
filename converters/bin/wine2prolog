@@ -2,7 +2,7 @@
 
 import argparse
 
-from wine.prologconverter import Wine2PrologConverter
+from datasets.wine.prologconverter import Wine2PrologConverter
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()

@@ -2,7 +2,7 @@
 
 import argparse
 
-from glassidentification.rdfconverter import GlassIdentification2RDFConverter
+from rdfconverter import GlassIdentification2RDFConverter
 
 
 if __name__ == '__main__':

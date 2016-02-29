@@ -2,7 +2,7 @@
 
 import argparse
 
-from iris.prologconverter import Iris2PrologConverter
+from prologconverter import Iris2PrologConverter
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@
 
 import argparse
 
-from wine.rdfconverter import Wine2RDFConverter
+from rdfconverter import Wine2RDFConverter
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()

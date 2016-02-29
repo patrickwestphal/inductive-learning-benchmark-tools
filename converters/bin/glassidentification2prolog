@@ -2,7 +2,7 @@
 
 import argparse
 
-from glassidentification.prologconverter import \
+from prologconverter import \
     GlassIdentification2PrologConverter
 
 

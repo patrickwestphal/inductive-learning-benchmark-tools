@@ -2,7 +2,7 @@
 
 import argparse
 
-from iris.rdfconverter import Iris2RDFConverter
+from datasets.iris.rdfconverter import Iris2RDFConverter
 
 
 if __name__ == '__main__':

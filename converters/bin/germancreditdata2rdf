@@ -2,7 +2,7 @@
 
 import argparse
 
-from germancreditdata.rdfconverter import GermanCreditData2RDFConverter
+from datasets.germancreditdata.rdfconverter import GermanCreditData2RDFConverter
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
