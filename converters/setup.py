@@ -18,8 +18,22 @@ config = {
         'pyparsing==2.0.3',
         'rdflib==4.2.1'
     ],
-    'packages': ['sdf'],
-    'scripts': ['bin/sdf2prolog', 'bin/sdf2rdf'],
+    'packages': ['datasets', 'predicates_file', 'prolog', 'sdf', 'utils'],
+    'scripts': [
+        'bin/alzheimer2rdf',
+        'bin/germancreditdata2prolog',
+        'bin/germancreditdata2rdf',
+        'bin/glassidentification2prolog',
+        'bin/glassidentification2rdf',
+        'bin/iris2prolog',
+        'bin/iris2rdf',
+        'bin/predfile2prolog',
+        'bin/predfile2rdf',
+        'bin/sdf2prolog',
+        'bin/sdf2rdf',
+        'bin/wine2prolog',
+        'bin/wine2rdf'
+    ],
     'name': 'conversion-scripts'
 }
 
