@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+import argparse
+
+from datasets.premierleague.prologconverter import PSQL2PrologConverter
+
+
+if __name__ == '__main__':
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('--dbhost')
+    argparser.add_argument('--dbname')
+    argparser.add_argument('--dbuser')
+    argparser.add_argument('--dbpw')
+    argparser.add_argument('outfile')
+
+    args = argparser.parse_args()
+    params = {}
+    if args.dbhost is not None:
+        params['host'] = args.dbhost
+    if args.dbname is not None:
+        params['db'] = args.dbname
+    if args.dbuser is not None:
+        params['user'] = args.dbuser
+    if args.dbname is not None:
+        params['pw'] = args.dbpw
+    params['output_file'] = args.outfile
+
+    premleague2pl = PSQL2PrologConverter(**params)
+    premleague2pl.convert()
